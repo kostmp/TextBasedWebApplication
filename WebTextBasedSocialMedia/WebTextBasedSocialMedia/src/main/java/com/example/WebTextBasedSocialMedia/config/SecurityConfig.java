@@ -47,16 +47,6 @@ public class SecurityConfig {
 
         http.sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
-    /*    http.formLogin(fL -> fL.loginPage("/login")
-                .usernameParameter("email").permitAll()
-                .defaultSuccessUrl("/", true)
-                .failureUrl("/login-error"));
-        http.logout(logOut -> logOut.logoutUrl("/logout")
-                .clearAuthentication(true)
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID","Idea-2e8e7cee")
-                .logoutSuccessUrl("/login"));*/
-
         return http.build();
     }
 
