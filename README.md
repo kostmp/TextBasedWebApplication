@@ -217,3 +217,9 @@ POST /register: Register a new user.
 Request: JSON with account details.
 
 Response: Confirmation message in JSON.
+
+## Ιmprovements
+
+#### Some requests require the user's email, which with the present implementation is provided by the user himself. This would potentially create many problems. One solution is when the user logs in, the program automatically gets the email when a request is called. This can be done using Spring Security's SecurityContextHolder. It's the first improvement that I will make.
+
+#### Also, due to my misunderstanding of the pronunciation, the user can see the posts but not the comments when requesting ("/feed"). This is very easy to do and I will be doing it soon.
