@@ -1,0 +1,30 @@
+CREATE TABLE users (
+    id BIGINT SERIAL,
+    email VARCHAR(255) PRIMARY KEY UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    isPremium BOOLEAN NOT NULL DEFAULT false
+);
+
+-- Posts Table
+CREATE TABLE posts (
+    id SERIAL PRIMARY KEY,
+    user_email VARCHAR(255) REFERENCES users(email),
+    text TEXT CHECK (LENGTH(text) <= 1000),
+	created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Comments Table
+CREATE TABLE comments (
+    id BIGINT SERIAL PRIMARY KEY,
+    post_id INT REFERENCES posts(id),
+    user_email VARCHAR(255) REFERENCES users(email),
+    comment TEXT CHECK (LENGTH(comment) <= 1000),
+	created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Followers Table
+CREATE TABLE follows (
+    follower_email VARCHAR(255) REFERENCES users(email),
+    following_email VARCHAR(255) REFERENCES users(email),
+    PRIMARY KEY (follower_email, following_email)
+);
